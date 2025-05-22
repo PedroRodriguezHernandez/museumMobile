@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">museumMobile</string>
+    <string name="museum_name">Museum</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="dont_have_acount">Don\'t have an account?</string>
+    <string name="signUp">Sign Up</string>
+</resources>
