@@ -5,4 +5,14 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_have_acount">Don\'t have an account?</string>
     <string name="signUp">Sign Up</string>
+    <string name="user_name">User Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="rep_password">Repeat password</string>
+    <string name="have_acount">Already have an account?</string>
+    <string name="shoping_cart">Shopping Cart</string>
+    <string name="home">Home</string>
+    <string name="ticket">Tickets</string>
+    <string name="camera">Camera</string>
+    <string name="menu">Menu</string>
 </resources>

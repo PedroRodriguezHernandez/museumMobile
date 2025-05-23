@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.museummobile.ui.features.login.Login
+import com.example.museummobile.ui.features.signup.SignUp
 import com.example.museummobile.ui.theme.MuseumMobileTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             MuseumMobileTheme {
-               Login()
+               SignUp()
             }
         }
     }

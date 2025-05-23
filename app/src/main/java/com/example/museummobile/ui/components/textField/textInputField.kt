@@ -3,6 +3,7 @@ package com.example.museummobile.ui.components.textField
 import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.Person
@@ -24,6 +25,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,6 +43,7 @@ fun InputField(
     focusColor: Color,
     unfocusColor: Color,
     backgroundColor: Color,
+    keyboardType: KeyboardType = KeyboardType.Text,
     leadingIcon: (@Composable (() -> Unit))? = null,
     isPassword: Boolean = false
 ) {
@@ -65,6 +69,10 @@ fun InputField(
     } else null
 
     OutlinedTextField(
+        keyboardOptions = KeyboardOptions(
+            keyboardType = keyboardType,
+            imeAction = ImeAction.Next
+        ),
         value = value,
         onValueChange = onValueChange,
         placeholder = { Text(placeholder, color = unfocusColor) },
@@ -104,6 +112,7 @@ fun PreviewInputField(){
         isPassword = true,
         leadingIcon = {
             Icon(Icons.Default.Password, contentDescription = "Password Icon")
-        }
+        },
+        keyboardType = KeyboardType.Password
     )
 }

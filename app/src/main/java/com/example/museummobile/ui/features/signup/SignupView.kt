@@ -1,4 +1,4 @@
-package com.example.museummobile.ui.features.login
+package com.example.museummobile.ui.features.signup
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +12,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Password
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -31,16 +32,14 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.museummobile.R
 import com.example.museummobile.ui.components.textField.InputField
-import com.example.museummobile.ui.theme.MuseumMobileTheme
 
 @Composable
-fun Login(){
+fun SignUp(){
     Column (
         modifier = Modifier.fillMaxSize()
             .navigationBarsPadding()
@@ -54,28 +53,41 @@ fun Login(){
             color = colorResource(R.color.dark_blue),
             fontFamily = FontFamily.Serif
         ),
-        text = stringResource(R.string.museum_name))
+            text = stringResource(R.string.museum_name))
 
         Column(
             modifier = Modifier.width(300.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            var user by remember { mutableStateOf("") }
             var email by remember { mutableStateOf("") }
             var password by remember { mutableStateOf("") }
+            var repeatPassword by remember { mutableStateOf("") }
 
+            InputField(
+                modifier = Modifier.fillMaxWidth(),
+                focusColor = colorResource(R.color.light_blue),
+                unfocusColor = colorResource(R.color.ultra_light_blue),
+                value = user,
+                onValueChange = { user = it },
+                placeholder = stringResource(R.string.user_name),
+                backgroundColor = Color.White,
+                leadingIcon = {
+                    Icon(Icons.Default.Person, contentDescription = "Person Icon")
+                }
+            )
             InputField(
                 modifier = Modifier.fillMaxWidth(),
                 focusColor = colorResource(R.color.light_blue),
                 unfocusColor = colorResource(R.color.ultra_light_blue),
                 value = email,
                 onValueChange = { email = it },
-                placeholder = "Enter username",
+                placeholder = stringResource(R.string.email),
                 backgroundColor = Color.White,
                 leadingIcon = {
-                    Icon(Icons.Default.Email, contentDescription = "Email Icon")
-                },
-                keyboardType = KeyboardType.Email
+                    Icon(Icons.Default.Email, contentDescription = "Person Icon")
+                }
             )
             InputField(
                 modifier = Modifier.fillMaxWidth(),
@@ -83,16 +95,25 @@ fun Login(){
                 unfocusColor = colorResource(R.color.ultra_light_blue),
                 value = password,
                 onValueChange = { password = it },
-                placeholder = "Enter password",
-                isPassword = true,
+                placeholder = stringResource(R.string.password),
                 backgroundColor = Color.White,
+                isPassword = true,
                 leadingIcon = {
-                    Icon(
-                        Icons.Default.Password,
-                        contentDescription = "Password Icon",
-                    )
-                },
-                keyboardType = KeyboardType.Password
+                    Icon(Icons.Default.Lock, contentDescription = "Lock Icon")
+                }
+            )
+            InputField(
+                modifier = Modifier.fillMaxWidth(),
+                focusColor = colorResource(R.color.light_blue),
+                unfocusColor = colorResource(R.color.ultra_light_blue),
+                value = repeatPassword,
+                onValueChange = { repeatPassword = it },
+                placeholder = stringResource(R.string.rep_password),
+                backgroundColor = Color.White,
+                isPassword = true,
+                leadingIcon = {
+                    Icon(Icons.Default.Lock, contentDescription = "Lock Icon")
+                }
             )
             Button(
                 onClick = { TODO() },
@@ -105,32 +126,24 @@ fun Login(){
                     contentColor = Color.White
                 )
             ) {
-                Text(stringResource(R.string.login))
+                Text(stringResource(R.string.signUp))
             }
-            ClickableText(
-                text = AnnotatedString(stringResource(R.string.forgot_password)),
-                onClick = {  TODO() }
-            )
         }
-
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(stringResource(R.string.dont_have_acount))
+            Text(stringResource(R.string.have_acount))
             ClickableText(
-                text = AnnotatedString(stringResource(R.string.signUp)),
+                text = AnnotatedString(stringResource(R.string.login)),
                 onClick = { TODO() }
             )
         }
-
     }
 }
 
-@Preview( showBackground = true)
+@Preview(showBackground = true)
 @Composable
-fun LoginPreview(){
-    MuseumMobileTheme {
-        Login()
-    }
+fun PreviewSignUp(){
+    SignUp()
 }
