@@ -35,12 +35,15 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.museummobile.R
+import com.example.museummobile.navegation.Screen
 import com.example.museummobile.ui.components.textField.InputField
 import com.example.museummobile.ui.theme.MuseumMobileTheme
 
 @Composable
-fun Login(){
+fun Login(navController: NavController) {
     Column (
         modifier = Modifier.fillMaxSize()
             .navigationBarsPadding()
@@ -95,7 +98,7 @@ fun Login(){
                 keyboardType = KeyboardType.Password
             )
             Button(
-                onClick = { TODO() },
+                onClick = { navController.navigate(Screen.Home.route) },
                 shape = RoundedCornerShape(50.dp),
                 modifier = Modifier
                     .width(150.dp)
@@ -120,7 +123,7 @@ fun Login(){
             Text(stringResource(R.string.dont_have_acount))
             ClickableText(
                 text = AnnotatedString(stringResource(R.string.signUp)),
-                onClick = { TODO() }
+                onClick = { navController.navigate(Screen.SignUp.route) }
             )
         }
 
@@ -131,6 +134,7 @@ fun Login(){
 @Composable
 fun LoginPreview(){
     MuseumMobileTheme {
-        Login()
+        val navController =  rememberNavController()
+        Login(navController)
     }
 }
