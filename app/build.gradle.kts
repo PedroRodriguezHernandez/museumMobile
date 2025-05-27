@@ -61,6 +61,12 @@ dependencies {
 
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
 
+    implementation("io.github.jan-tennert.supabase:supabase-kt:1.3.2")
+    implementation("io.github.jan-tennert.supabase:auth-kt:1.3.2")
+    implementation("io.github.jan-tennert.supabase:postgrest-kt:1.3.2")
+    implementation("io.github.jan-tennert.supabase:ktor-kt:1.3.2")
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
