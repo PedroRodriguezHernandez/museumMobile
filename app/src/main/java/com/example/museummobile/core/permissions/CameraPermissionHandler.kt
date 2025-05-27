@@ -1,4 +1,4 @@
-package com.example.museummobile.permissions
+package com.example.museummobile.core.permissions
 
 import android.Manifest
 import android.widget.Toast
