@@ -1,6 +1,6 @@
 package com.example.museummobile.core.model
 
-data class Auth(
+data class AuthModel(
     val uid: String,
     val userName: String
 )

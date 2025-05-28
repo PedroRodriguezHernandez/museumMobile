@@ -61,10 +61,10 @@ dependencies {
 
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
 
-    implementation("io.github.jan-tennert.supabase:supabase-kt:1.3.2")
-    implementation("io.github.jan-tennert.supabase:auth-kt:1.3.2")
-    implementation("io.github.jan-tennert.supabase:postgrest-kt:1.3.2")
-    implementation("io.github.jan-tennert.supabase:ktor-kt:1.3.2")
+    implementation(platform("io.github.jan-tennert.supabase:bom:3.1.4"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:auth-kt")
+    implementation("io.github.jan-tennert.supabase:realtime-kt")
 
 
 
