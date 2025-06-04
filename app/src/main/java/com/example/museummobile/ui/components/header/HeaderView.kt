@@ -22,31 +22,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.museummobile.R
 
 @Composable
-fun Header(title:String = "Lorem Ipsum"){
-    Box (
-        modifier = Modifier.background(colorResource(R.color.broken_withe))
-            .fillMaxWidth(),
-    ){
-    CompositionLocalProvider(LocalContentColor provides colorResource(R.color.dark_blue)) {
-        IconButton(onClick = { TODO() }) {
-            Icon(
-                imageVector = Icons.Filled.Menu,
-                contentDescription = stringResource(R.string.menu)
+fun Header(title: String = "Lorem Ipsum", onMenuClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .background(colorResource(R.color.broken_withe))
+            .fillMaxWidth()
+    ) {
+        CompositionLocalProvider(LocalContentColor provides colorResource(R.color.dark_blue)) {
+            IconButton(onClick = onMenuClick) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = stringResource(R.string.menu)
+                )
+            }
+            Text(
+                text = title,
+                style = TextStyle(fontWeight = FontWeight.Bold, fontFamily = FontFamily.Serif),
+                modifier = Modifier.align(Alignment.Center)
             )
         }
-        Text(style = TextStyle(
-            fontWeight = FontWeight.Bold,
-            fontFamily = FontFamily.Serif
-        ),
-            text = title,
-            modifier = Modifier.align(Alignment.Center)
-        )
-    }
     }
 }
 
 @Preview
 @Composable
 fun PreviewHeader(){
-    Header()
+    Header(onMenuClick = {})
 }

@@ -34,7 +34,6 @@ class QRCodeAnalyzer(
                         barcode.rawValue?.let { rawValue ->
                             if (currentTime - lastScanTime > scanCooldownMs) {
                                 lastScanTime = currentTime
-                                Log.d("QRCodeAnalyzer", "QR detectado: $rawValue")
                                 onQRCodeDetected(rawValue)
                             }
                         }

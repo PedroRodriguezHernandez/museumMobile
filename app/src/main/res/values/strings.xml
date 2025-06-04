@@ -16,4 +16,7 @@
     <string name="camera">Camera</string>
     <string name="menu">Menu</string>
     <string name="welcome">Welcome</string>
+    <string name="fail_login">Failed to log in</string>
+    <string name="price">Price:</string>
+    <string name="age">age</string>
 </resources>

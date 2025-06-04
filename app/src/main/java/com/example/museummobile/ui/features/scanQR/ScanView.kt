@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import com.example.museummobile.camera.CameraPreview
 import com.example.museummobile.camera.analyzer.QRCodeAnalyzer
 import com.example.museummobile.core.permissions.RequestCameraPermission
+import com.example.museummobile.navegation.Screen
 
 @Composable
 fun Scan(navController: NavController) {
@@ -22,7 +23,7 @@ fun Scan(navController: NavController) {
         val analyzer = remember {
             QRCodeAnalyzer { qrValue ->
                 Toast.makeText(context, "QR leído: $qrValue", Toast.LENGTH_SHORT).show()
-                // Aquí puedes manejar el valor leído, navegar, etc.
+                navController.navigate(Screen.Exhibition.createRoute(qrValue))
             }
         }
 
