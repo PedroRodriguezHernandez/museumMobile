@@ -5,8 +5,7 @@ import com.example.museummobile.core.domain.OfferRepository
 import com.example.museummobile.core.model.Offer
 import com.example.museummobile.core.supabase.SupabaseClientProvider.supabase
 import io.github.jan.supabase.postgrest.from
-import io.github.jan.supabase.postgrest.query.Columns
-import io.github.jan.supabase.postgrest.result.PostgrestResult
+
 
 class OfferSupabase: OfferRepository {
 
@@ -24,7 +23,8 @@ class OfferSupabase: OfferRepository {
     }
 
     override suspend fun getOffers(): List<Offer> {
-        return supabase.from("Offer").select()
+        val result =supabase.from("Offer").select()
                 .decodeList<Offer>()
+        return  result
     }
 }

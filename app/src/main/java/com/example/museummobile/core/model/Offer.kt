@@ -5,10 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Offer(
-    val id: Int? = null,
+    val id: Int,
     val name: String,
     val price: Double,
-    val age: Int? = null,
-    val startDate: LocalDate,
-    val endDate: LocalDate? = null
+    val age: String? = null,
+    val start_date: LocalDate,
+    val end_date: LocalDate? = null
 )

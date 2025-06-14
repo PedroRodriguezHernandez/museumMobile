@@ -1,6 +1,5 @@
 package com.example.museummobile.ui.features.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.museummobile.core.domain.ExhibitionRepository
@@ -29,10 +28,9 @@ class ExhibitionViewModel(
 
             try {
                 val exhibition = repository.getExhibitionById(id)
-                Log.d("Prueba", "La prueba: $repository")
                 _exhibitionState.value = exhibition
             } catch (e: Exception) {
-                _error.value = e.message ?: "Unknown error"
+              _error.value = e.message
             } finally {
                 _isLoading.value = false
             }

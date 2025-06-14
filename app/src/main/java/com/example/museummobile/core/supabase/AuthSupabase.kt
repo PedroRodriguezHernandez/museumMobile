@@ -5,6 +5,10 @@ import com.example.museummobile.core.domain.AuthRepository
 import com.example.museummobile.core.supabase.SupabaseClientProvider.supabase
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonPrimitive
+import kotlinx.serialization.json.buildJsonObject
+import kotlinx.serialization.json.put
 
 class AuthSupabase : AuthRepository{
 
@@ -20,11 +24,14 @@ class AuthSupabase : AuthRepository{
         }
     }
 
-    override suspend fun signUp(userEmail: String, userPassword: String): Result<Unit> {
+    override suspend fun signUp(userEmail: String, userPassword: String, name: String): Result<Unit> {
         return try {
-            supabase.auth.signUpWith(Email){
+            val response = supabase.auth.signUpWith(Email){
                 email = userEmail
                 password = userPassword
+                data = buildJsonObject {
+                    put("name", JsonPrimitive(name))
+                }
             }
             Result.success(Unit)
         } catch (e: Exception) {
@@ -38,7 +45,6 @@ class AuthSupabase : AuthRepository{
 
      override fun isLoggedIn(): Boolean {
         val result =  supabase.auth.currentSessionOrNull() != null
-         Log.d("Prueba", "isLoggedIn: $result")
          return result
     }
 }

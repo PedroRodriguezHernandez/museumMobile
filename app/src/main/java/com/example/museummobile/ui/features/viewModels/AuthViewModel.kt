@@ -1,6 +1,5 @@
 package com.example.museummobile.ui.features.viewModels
 
-import ads_mobile_sdk.id
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,7 +13,6 @@ import com.example.museummobile.core.supabase.SupabaseClientProvider.supabase
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.status.SessionStatus
 import kotlinx.coroutines.flow.collectLatest
-import okhttp3.internal.userAgent
 
 
 class AuthViewModel (
@@ -54,7 +52,11 @@ class AuthViewModel (
     }
 
     fun checkLoggedIn() {
-        _isLoggedIn.value = authRepository.isLoggedIn()
+        viewModelScope.launch {
+            isLoading = true
+            _isLoggedIn.value = authRepository.isLoggedIn()
+        }
+        isLoading = false
     }
 
 
@@ -88,6 +90,23 @@ class AuthViewModel (
                 errorMessage = e.message
                 isLoading = false
             }
+        }
+    }
+
+    fun signUp(email: String, password: String, user: String, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            isLoading = true
+            errorMessage = null
+            val result = authRepository.signUp(email, password,user)
+            isLoading = false
+            result.fold(
+                onSuccess = {
+                    onSuccess()
+                },
+                onFailure = {
+                    errorMessage = "fail_signup"
+                }
+            )
         }
     }
 
