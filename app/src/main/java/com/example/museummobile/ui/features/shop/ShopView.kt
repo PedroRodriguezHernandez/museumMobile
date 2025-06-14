@@ -1,7 +1,6 @@
 package com.example.museummobile.ui.features.shop
 
 import android.util.Log
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,28 +11,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ShoppingCartCheckout
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -49,7 +46,6 @@ import com.example.museummobile.core.supabase.OfferSupabase
 import com.example.museummobile.ui.components.dateSelector.DateSelector
 import com.example.museummobile.ui.components.ticket.Ticket
 import com.example.museummobile.ui.features.viewModels.OfferViewModel
-import com.example.museummobile.ui.features.viewModels.SelectDate
 import com.example.museummobile.ui.features.viewModels.SharedViewModel
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
@@ -78,6 +74,9 @@ fun Shop(navController: NavController,
         selectDates.filter { it.date == currentDate }
             .toMutableList()
     }
+
+    var number by remember { mutableIntStateOf(selectDates.size) }
+
 
     LaunchedEffect(Unit) {
         offerViewModel.loadOffers()
@@ -142,10 +141,16 @@ fun Shop(navController: NavController,
 
                         navController.navigate("cart")
                     }) {
-                        Icon(Icons.Outlined.ShoppingCartCheckout,
-                            contentDescription = stringResource(R.string.shopping_checkout),
-                            tint = colorResource(R.color.blue)
-                        )
+                        BadgedBox( badge = {
+                            if (number > 0) {
+                                Badge { Text("") }
+                            }
+                        }) {
+                            Icon(Icons.Outlined.ShoppingCartCheckout,
+                                contentDescription = stringResource(R.string.shopping_checkout),
+                                tint = colorResource(R.color.blue))
+                        }
+
                     }
                 }
 
@@ -176,6 +181,8 @@ fun Shop(navController: NavController,
                             onDatesUpdated = {
                                 selectedList.clear()
                                 selectedList.addAll(it)
+                                number = selectedList.size
+                                Log.d("Prueba", "Shop: $number")
                             },
                             countForThisOffer)
                     }

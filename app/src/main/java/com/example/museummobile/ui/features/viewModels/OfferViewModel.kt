@@ -38,8 +38,6 @@ class OfferViewModel(
 
     fun loadOffers() {
         viewModelScope.launch {
-            Log.d("Prueba", "loadOffers: start")
-
             isLoading = true
             this@OfferViewModel.errorMessage = null
             try {
@@ -48,7 +46,6 @@ class OfferViewModel(
                 offers.addAll(result)
                 isLoaded = true
             } catch (e: Exception) {
-                Log.d("Prueba", "loadOffers: $e")
                 this@OfferViewModel.errorMessage = e.message
             }finally {
                 isLoading = false

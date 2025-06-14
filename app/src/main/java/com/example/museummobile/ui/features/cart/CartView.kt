@@ -1,6 +1,5 @@
 package com.example.museummobile.ui.features.cart
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -29,7 +28,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -49,22 +47,25 @@ import androidx.navigation.compose.rememberNavController
 import com.example.museummobile.R
 import com.example.museummobile.core.model.Offer
 import com.example.museummobile.core.supabase.OfferSupabase
+import com.example.museummobile.core.supabase.TicketsSupabase
 import com.example.museummobile.ui.features.viewModels.OfferViewModel
 import com.example.museummobile.ui.features.viewModels.SelectDate
 import com.example.museummobile.ui.features.viewModels.SharedViewModel
-import kotlinx.coroutines.flow.mapNotNull
+import com.example.museummobile.ui.features.viewModels.TicketsViewModel
 import kotlinx.datetime.LocalDate
 
 @Composable
 fun Cart(navController: NavController,
-         sharedViewModel: SharedViewModel = viewModel()) {
+         sharedViewModel: SharedViewModel = viewModel()
+) {
 
     var total by remember { mutableDoubleStateOf(0.00) }
 
     val selectDate by sharedViewModel.selectDates.collectAsState()
 
-
     val offerViewModel = remember { OfferViewModel(OfferSupabase()) }
+    val ticketsViewModel = remember{ TicketsViewModel(TicketsSupabase())}
+
     val offers = offerViewModel.offers
     val isLoaded = offerViewModel.isLoaded
 
@@ -72,7 +73,7 @@ fun Cart(navController: NavController,
         offerViewModel.loadOffers()
     }
 
-    if (!isLoaded) {//TODO: IS loaded debe estar a false
+    if (!isLoaded) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -151,13 +152,21 @@ fun Cart(navController: NavController,
                     fontWeight = FontWeight.SemiBold
                 )
                 Button(
-                    onClick = {/*TODO( Pasarela de Pago)*/ },
+                    onClick = {buyTickets(selectDate,ticketsViewModel,sharedViewModel)},
                     colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.blue))
                 ) {
                     Text(text = stringResource(R.string.pay))
                 }
             }
         }
+    }
+}
+
+fun buyTickets(
+    selectDate: List<SelectDate>, ticketsViewModel: TicketsViewModel,sharedViewModel: SharedViewModel) {
+    for (date in selectDate) {
+       ticketsViewModel.addTickets(date.date,date.id)
+        sharedViewModel.removeDate(SelectDate(id = date.id, date = date.date))
     }
 }
 
