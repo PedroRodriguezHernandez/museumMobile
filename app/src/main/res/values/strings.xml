@@ -40,4 +40,7 @@
     <string name="shop">Shop</string>
     <string name="my_tickets">My tickets</string>
     <string name="entry_policy">By purchasing tickets, you acknowledge that all sales are final. Tickets cannot be refunded, exchanged, or rescheduled under any circumstances. Entry to the museum is contingent upon compliance with all rules and regulations. Museum staff reserve the right to deny admission or remove visitors who fail to adhere to these policies or who behave inappropriately. Your cooperation is essential to maintaining a safe and enjoyable environment for all guests.</string>
+    <string name="confirm_payment">Confirm payment</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
 </resources>

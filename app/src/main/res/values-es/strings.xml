@@ -40,4 +40,7 @@
     <string name="shop">Comprar Entradas</string>
     <string name="my_tickets">Mis Entradas</string>
     <string name="entry_policy">Al comprar las entradas, usted acepta que todas las ventas son definitivas. Las entradas no pueden ser reembolsadas, cambiadas ni reprogramadas bajo ninguna circunstancia. La entrada al museo está condicionada al cumplimiento de todas las normas y reglamentos. El personal del museo se reserva el derecho de denegar el acceso o expulsar a los visitantes que no respeten estas políticas o que tengan un comportamiento inapropiado. Su colaboración es esencial para mantener un entorno seguro y agradable para todos los visitantes.</string>
+    <string name="confirm_payment">Confirmar pago</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
 </resources>

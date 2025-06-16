@@ -1,7 +1,6 @@
 package com.example.museummobile.ui.features.cart
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,12 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBackIosNew
-import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,6 +27,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -39,7 +37,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -60,6 +57,8 @@ import kotlinx.datetime.LocalDate
 fun Cart(navController: NavController,
          sharedViewModel: SharedViewModel = viewModel()
 ) {
+
+    var showDialog by remember { mutableStateOf(false) }
 
     var total by remember { mutableDoubleStateOf(0.00) }
 
@@ -155,80 +154,36 @@ fun Cart(navController: NavController,
                     fontWeight = FontWeight.SemiBold
                 )
                 Button(
-                    onClick = {buyTickets(selectDate,ticketsViewModel,sharedViewModel)},
+                    onClick = {showDialog = true},
                     colors = ButtonDefaults.buttonColors(containerColor = colorResource(R.color.blue))
                 ) {
                     Text(text = stringResource(R.string.pay))
                 }
             }
         }
+        if (showDialog) {
+            PayAcceptance({ showDialog = false },{buyTickets(total,selectDate, ticketsViewModel, sharedViewModel)})
+        }
     }
 }
 
-@Composable
-fun PayAcceptance (){
 
-}
 
 fun buyTickets(
-    selectDate: List<SelectDate>, ticketsViewModel: TicketsViewModel,sharedViewModel: SharedViewModel) {
+    totalCost: Double,
+    selectDate: List<SelectDate>,
+    ticketsViewModel: TicketsViewModel,
+    sharedViewModel: SharedViewModel) {
+
     for (date in selectDate) {
-       ticketsViewModel.addTickets(date.date,date.id)
+        ticketsViewModel.addTickets(date.date, date.id)
         sharedViewModel.removeDate(SelectDate(id = date.id, date = date.date))
     }
+
+    //TODO(Connect to payment gateway )
 }
 
-@Composable
-fun CartItem(offer: Offer, date: LocalDate, function: () -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = colorResource(R.color.broken_withe))
-            .border(1.dp, color = colorResource(R.color.ultra_light_blue))
-            .padding(13.dp),
-        verticalAlignment = Alignment.Top ,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Column(
-            modifier = Modifier
-                .weight(1f)
-                .padding(10.dp)
-        ) {
-            Text(text = offer.name,
-                fontSize = 24.sp,
-                color = colorResource(R.color.blue),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            if (offer.age != null) {
-                Text(text = "${stringResource(R.string.age)}: ${ offer.age }",
-                    fontSize = 16.sp,
-                    color = colorResource(R.color.blue)
-                )
-            }
-            Text(text = date.toString(),
-                fontSize = 16.sp,
-                color = colorResource(R.color.blue)
-            )
-        }
 
-        Column (
-            modifier = Modifier
-                .width(70.dp)
-        ){
-            IconButton(onClick = function) {
-                Icon(imageVector = Icons.Outlined.Delete,
-                    contentDescription = stringResource(R.string.delete),
-                    tint = colorResource(R.color.blue)
-                )
-            }
-            Text(text = "${String.format("%.2f", offer.price)}${stringResource(R.string.euro)}",
-                fontSize = 16.sp,
-                color = colorResource(R.color.blue)
-            )
-        }
-    }
-}
 
 fun calcTotalCost(offerWithDates: List<Pair<Offer, LocalDate>>): Double {
     return offerWithDates.sumOf { it.first.price }
