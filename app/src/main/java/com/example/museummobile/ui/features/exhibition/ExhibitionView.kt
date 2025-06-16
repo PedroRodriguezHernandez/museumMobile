@@ -28,10 +28,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.text.HtmlCompat
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -39,6 +44,7 @@ import coil.compose.AsyncImage
 import com.example.museummobile.R
 import com.example.museummobile.core.supabase.ExhibitionSupabase
 import com.example.museummobile.ui.features.viewModels.ExhibitionViewModel
+import kotlinx.serialization.json.JsonPrimitive
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
@@ -70,7 +76,6 @@ fun Exhibition(navController: NavController, id: String) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(R.color.broken_withe))
-                .padding(13.dp, 0.dp)
                 .statusBarsPadding()
                 .navigationBarsPadding()
         ) {
@@ -96,7 +101,8 @@ fun Exhibition(navController: NavController, id: String) {
                     color = colorResource(R.color.dark_blue),
                     text = exhibition?.title ?: "",
                     modifier = Modifier.align(Alignment.Center),
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.SemiBold
                 )
             }
 
@@ -105,6 +111,8 @@ fun Exhibition(navController: NavController, id: String) {
                 modifier = Modifier
                     .fillMaxSize()
                     .verticalScroll(scrollState)
+                    .background(color = colorResource(R.color.white))
+                    .padding(13.dp)
             ) {
                 exhibition?.let {
                     AsyncImage(
@@ -112,9 +120,23 @@ fun Exhibition(navController: NavController, id: String) {
                         contentDescription = it.title,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(100.dp),
+                            .height(150.dp),
                         contentScale = ContentScale.Fit
                     )
+
+
+                    it.tags.orEmpty().forEach { (key, value) ->
+                        val displayValue = (value as? JsonPrimitive)?.content ?: value.toString()
+                        Text(
+                            text = buildAnnotatedString {
+                                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                                    append("$key: ")
+                                }
+                                append(displayValue)
+                            },
+                            fontSize = 16.sp
+                        )
+                    }
 
                     val plainText = HtmlCompat.fromHtml(
                         it.description
@@ -122,6 +144,8 @@ fun Exhibition(navController: NavController, id: String) {
                             .trim(),
                         HtmlCompat.FROM_HTML_MODE_LEGACY
                     ).toString()
+
+
 
                     Text(
                         text = plainText,

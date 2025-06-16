@@ -30,6 +30,10 @@ class SharedViewModel(private val repository: SelectDateRepository): ViewModel()
         }
     }
 
+    fun replaceDates(dates: List<SelectDate>){
+        saveAndUpdate(dates)
+    }
+
     fun addDates(dates: List<SelectDate>) {
         val updated = _selectDates.value.toMutableList()
         updated.addAll(dates)

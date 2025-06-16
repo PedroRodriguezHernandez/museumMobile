@@ -34,4 +34,10 @@
     <string name="pls_select_date">Please select a day</string>
     <string name="purchase_summary">Purchase Summary</string>
     <string name="delete">Delete</string>
+    <string name="close">Close</string>
+    <string name="fail_to_open_QR">Could not open QR content</string>
+    <string name="scan">Scan</string>
+    <string name="shop">Shop</string>
+    <string name="my_tickets">My tickets</string>
+    <string name="entry_policy">By purchasing tickets, you acknowledge that all sales are final. Tickets cannot be refunded, exchanged, or rescheduled under any circumstances. Entry to the museum is contingent upon compliance with all rules and regulations. Museum staff reserve the right to deny admission or remove visitors who fail to adhere to these policies or who behave inappropriately. Your cooperation is essential to maintaining a safe and enjoyable environment for all guests.</string>
 </resources>

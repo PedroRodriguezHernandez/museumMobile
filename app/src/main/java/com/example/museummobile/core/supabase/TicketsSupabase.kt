@@ -18,10 +18,12 @@ class TicketsSupabase :  TicketsRepository {
     }
 
     override suspend fun getMyTickets(tickets_ids: List<String>): List<Tickets> {
+        val idsFormatted = tickets_ids.joinToString(",", "(", ")")
+
         val result = supabase.from("tickets")
             .select() {
                 filter{
-                    filter(column = "id",operator = FilterOperator.IN, value = tickets_ids)
+                    filter(column = "id",operator = FilterOperator.IN, value = idsFormatted)
                 }
             }
             .decodeList<Tickets>()

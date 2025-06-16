@@ -65,6 +65,8 @@ dependencies {
     implementation("androidx.camera:camera-view:1.3.1")
 
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
+    implementation("com.google.zxing:core:3.5.1")
+
 
     implementation(platform("io.github.jan-tennert.supabase:bom:3.1.4"))
     implementation("io.github.jan-tennert.supabase:postgrest-kt")

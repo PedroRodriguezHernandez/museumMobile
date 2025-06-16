@@ -3,6 +3,7 @@ package com.example.museummobile.navegation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -10,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.museummobile.MainScreen
+import com.example.museummobile.R
 import com.example.museummobile.core.supabase.AuthSupabase
 import com.example.museummobile.ui.features.cart.Cart
 import com.example.museummobile.ui.features.confirm_email.ConfirmEmail
@@ -43,7 +45,7 @@ fun AppNavGraph(navController: NavHostController){
         composable(Screen.Confirm.route){ ConfirmEmail(navController) }
         composable(Screen.Home.route){ MainScreen(
             { Home(navController) },
-            title = "Home",
+            title = stringResource(R.string.home),
             navController,
             {
                 authViewModel.logout(){
@@ -54,7 +56,7 @@ fun AppNavGraph(navController: NavHostController){
             })}
         composable(Screen.MyTickets.route){ MainScreen(
             { MyTickets(navController) },
-            title = "My Tickets",
+            title =stringResource(R.string.my_tickets),
             navController,
             {
                 authViewModel.logout(){
@@ -65,7 +67,7 @@ fun AppNavGraph(navController: NavHostController){
             }) }
         composable(Screen.Shop.route){ MainScreen(
             { Shop(navController,sharedViewModel) },
-            title = "Shop",
+            title = stringResource(R.string.shop),
             navController,
             {
                 authViewModel.logout(){
@@ -76,7 +78,7 @@ fun AppNavGraph(navController: NavHostController){
             })}
         composable(Screen.Scan.route){ MainScreen(
             { Scan(navController) },
-            title = "Scan",
+            title = stringResource(R.string.scan),
             navController,
             {
                 authViewModel.logout(){
