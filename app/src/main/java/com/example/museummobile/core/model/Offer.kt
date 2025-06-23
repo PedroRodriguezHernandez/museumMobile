@@ -10,5 +10,6 @@ data class Offer(
     val price: Double,
     val age: String? = null,
     val start_date: LocalDate,
-    val end_date: LocalDate? = null
+    val end_date: LocalDate? = null,
+    val museum_id: String,
 )

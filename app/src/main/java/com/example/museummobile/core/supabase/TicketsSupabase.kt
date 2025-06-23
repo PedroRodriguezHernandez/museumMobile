@@ -19,15 +19,18 @@ class TicketsSupabase :  TicketsRepository {
 
     override suspend fun getMyTickets(tickets_ids: List<String>): List<Tickets> {
         val idsFormatted = tickets_ids.joinToString(",", "(", ")")
-
-        val result = supabase.from("tickets")
-            .select() {
-                filter{
-                    filter(column = "id",operator = FilterOperator.IN, value = idsFormatted)
+        return try {
+            val result = supabase.from("tickets")
+                .select() {
+                    filter {
+                        filter(column = "id", operator = FilterOperator.IN, value = idsFormatted)
+                    }
                 }
-            }
-            .decodeList<Tickets>()
-        return result
+                .decodeList<Tickets>()
+            result
+        }catch (e: Exception){
+            emptyList()
+        }
     }
 
     override suspend fun addTickets(date: LocalDate, offerId: Int) {
@@ -35,6 +38,7 @@ class TicketsSupabase :  TicketsRepository {
             date_for = date,
             offer_id = offerId
         )
+
         try {
             val result = supabase
                 .from("tickets")

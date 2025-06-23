@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">museumMobile</string>
+    <string name="app_name">Expotech</string>
     <string name="museum_name">Museo</string>
     <string name="login">Iniciar sesión</string>
     <string name="forgot_password">¿Olvidaste tu contraseña?</string>
@@ -43,4 +43,9 @@
     <string name="confirm_payment">Confirmar pago</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
+    <string name="enter_username">Escriba nombre de usuario</string>
+    <string name="enter_password">Escriba la contraseña</string>
+    <string name="log_out">Cerrar sesion</string>
+    <string name="option">Opciones</string>
+    <string name="select_museum">Select Museum</string>
 </resources>

@@ -91,7 +91,7 @@ fun Signup(navController: NavController) {
                     color = colorResource(R.color.dark_blue),
                     fontFamily = FontFamily.Serif
                 ),
-                text = stringResource(R.string.museum_name)
+                text = stringResource(R.string.app_name)
             )
 
             Column(

@@ -92,7 +92,7 @@ fun Login(navController: NavController) {
                     color = colorResource(R.color.dark_blue),
                     fontFamily = FontFamily.Serif
                 ),
-                text = stringResource(R.string.museum_name)
+                text = stringResource(R.string.app_name)
             )
 
             Column(
@@ -109,7 +109,7 @@ fun Login(navController: NavController) {
                     unfocusColor = colorResource(R.color.ultra_light_blue),
                     value = email,
                     onValueChange = { email = it },
-                    placeholder = "Enter username",
+                    placeholder = stringResource(R.string.enter_username),
                     backgroundColor = Color.White,
                     leadingIcon = {
                         Icon(Icons.Default.Email, contentDescription = "Email Icon")
@@ -122,7 +122,7 @@ fun Login(navController: NavController) {
                     unfocusColor = colorResource(R.color.ultra_light_blue),
                     value = password,
                     onValueChange = { password = it },
-                    placeholder = "Enter password",
+                    placeholder = stringResource(R.string.enter_password),
                     isPassword = true,
                     backgroundColor = Color.White,
                     leadingIcon = {

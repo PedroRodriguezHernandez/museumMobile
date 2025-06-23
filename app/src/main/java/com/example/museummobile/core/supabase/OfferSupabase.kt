@@ -11,11 +11,13 @@ class OfferSupabase: OfferRepository {
 
     override suspend fun getOfferById(id: String): Offer? {
         return try {
-            supabase.from("Offer").select(){
+             supabase.from("offer").select(){
                 filter {
                     eq("id", id)
                 }
             }.decodeSingleOrNull<Offer>()
+
+
         }catch (e : Exception){
             Log.e("Error", "$e")
             throw Error(e)
@@ -23,7 +25,7 @@ class OfferSupabase: OfferRepository {
     }
 
     override suspend fun getOffers(): List<Offer> {
-        val result =supabase.from("Offer").select()
+        val result =supabase.from("offer").select()
                 .decodeList<Offer>()
         return  result
     }

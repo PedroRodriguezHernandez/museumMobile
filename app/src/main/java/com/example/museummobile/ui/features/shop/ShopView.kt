@@ -1,6 +1,5 @@
 package com.example.museummobile.ui.features.shop
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,22 +25,31 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.museummobile.R
+import com.example.museummobile.core.model.Museum
+import com.example.museummobile.core.supabase.MuseumSupabase
 import com.example.museummobile.core.supabase.OfferSupabase
 import com.example.museummobile.ui.components.dateSelector.DateSelector
 import com.example.museummobile.ui.components.ticket.Ticket
+import com.example.museummobile.ui.features.viewModels.MuseumViewModel
 import com.example.museummobile.ui.features.viewModels.OfferViewModel
 import com.example.museummobile.ui.features.viewModels.SharedViewModel
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
-import kotlin.math.log
 
 @Composable
 fun Shop(
     navController: NavController,
     sharedViewModel: SharedViewModel = viewModel()
 ) {
+    val museumViewModel = remember { MuseumViewModel(MuseumSupabase()) }
+    val museums = museumViewModel.museums
+    var selectedMuseum by remember { mutableStateOf<Museum?>(null) }
+
+    LaunchedEffect(Unit) {
+        museumViewModel.loadMuseums()
+    }
     val offerViewModel = remember { OfferViewModel(OfferSupabase()) }
     val offers = offerViewModel.offers
     val isLoaded = offerViewModel.isLoaded
@@ -79,15 +87,18 @@ fun Shop(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+
             TopBarShop(
                 selectedDateMillis = selectedDateMillis,
                 number = number,
                 sharedViewModel = sharedViewModel,
                 navController = navController,
-                selectedList = filteredSelectDate.toMutableList()
-            ) {
-                showDatePicker = true
-            }
+                selectedList = filteredSelectDate.toMutableList(),
+                function = { showDatePicker = true },
+                museums = museums,
+                selectedMuseum = selectedMuseum,
+                onMuseumSelected = {selectedMuseum = it}
+            )
 
             val filteredOffers = selectedDateMillis?.let { millis ->
                 val selectedDate = Instant.fromEpochMilliseconds(millis)
@@ -98,11 +109,16 @@ fun Shop(
                     val start = offer.start_date
                     val end = offer.end_date
 
-                    if (end != null) {
+                    val matchesDate = if (end != null) {
                         selectedDate >= start && selectedDate <= end
                     } else {
                         selectedDate >= start
                     }
+                    val matchesMuseum = selectedMuseum?.let { museum ->
+                        offer.museum_id == museum.id
+                    } ?: true
+
+                    matchesDate && matchesMuseum
                 }
             } ?: offers.filterNotNull()
 

@@ -162,7 +162,10 @@ fun Cart(navController: NavController,
             }
         }
         if (showDialog) {
-            PayAcceptance({ showDialog = false },{buyTickets(total,selectDate, ticketsViewModel, sharedViewModel)})
+            PayAcceptance({ showDialog = false },{
+                buyTickets(total,selectDate, ticketsViewModel, sharedViewModel)
+                showDialog = false
+            })
         }
     }
 }

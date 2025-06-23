@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.museummobile.core.domain.TicketsRepository
 import com.example.museummobile.core.model.Tickets
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDate
 
@@ -24,18 +25,22 @@ class TicketsViewModel(
     var isCreated by mutableStateOf(false)
         private set
 
-    fun loadTickets(tickets_id: List<String>){
+    fun loadTickets(tickets_id: List<String>) {
         viewModelScope.launch {
             isLoading = true
             errorMessage = null
             try {
-                var result = ticketsRepository.getMyTickets(tickets_id)
                 tickets.clear()
-                tickets.addAll(result)
-            }catch (e: Exception){
+
+                val chunks = tickets_id.chunked(100)
+                for (chunk in chunks) {
+                    val partialResult = ticketsRepository.getMyTickets(chunk)
+                    tickets.addAll(partialResult)
+                }
+            } catch (e: Exception) {
                 errorMessage = e.message
-            }finally {
-                isLoading =  false
+            } finally {
+                isLoading = false
             }
         }
     }
