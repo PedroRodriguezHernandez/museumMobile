@@ -12,4 +12,7 @@ sealed class Screen(val route : String){
     object Scan: Screen("scan")
     object Shop: Screen("shop")
     object Confirm: Screen("confirm_email")
+    object News: Screen("news/{id}"){
+        fun createRouter(id:String) = "news/$id"
+    }
 }

@@ -3,8 +3,11 @@ package com.example.museummobile.core.supabase
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
+import io.github.jan.supabase.realtime.Realtime
+import kotlin.time.Duration.Companion.seconds
 
 object SupabaseClientProvider {
+
 
     val supabase =
         createSupabaseClient(
@@ -15,5 +18,9 @@ object SupabaseClientProvider {
                 alwaysAutoRefresh = true
             }
             install(Postgrest)
+            install(Realtime){
+                reconnectDelay = 5.seconds
+            }
         }
+
 }

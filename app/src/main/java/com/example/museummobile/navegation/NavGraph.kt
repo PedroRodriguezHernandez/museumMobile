@@ -19,6 +19,7 @@ import com.example.museummobile.ui.features.exhibition.Exhibition
 import com.example.museummobile.ui.features.home.Home
 import com.example.museummobile.ui.features.login.Login
 import com.example.museummobile.ui.features.myTickets.MyTickets
+import com.example.museummobile.ui.features.news.News
 import com.example.museummobile.ui.features.scanQR.Scan
 import com.example.museummobile.ui.features.shop.Shop
 import com.example.museummobile.ui.features.signup.Signup
@@ -94,5 +95,10 @@ fun AppNavGraph(navController: NavHostController){
             Exhibition(navController, id)
         }
         composable(Screen.Cart.route){ Cart(navController,sharedViewModel)}
+        composable(Screen.News.route, arguments = listOf(navArgument("id"){ type = NavType.StringType})){
+            backStackEntry ->
+            val id = backStackEntry.arguments?.getString("id") ?: ""
+            News(id, navController)
+        }
     }
 }

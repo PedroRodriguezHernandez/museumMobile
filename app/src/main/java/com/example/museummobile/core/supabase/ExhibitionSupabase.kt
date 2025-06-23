@@ -13,7 +13,6 @@ class ExhibitionSupabase: ExhibitionRepository {
         return try {
             val resource = supabase.postgrest.rpc("record_view", mapOf("p_exhibition_id" to id))
                 .decodeSingleOrNull<Exhibition>()
-            Log.d("Prueba","$resource")
             resource
 
         }catch (e:Exception){

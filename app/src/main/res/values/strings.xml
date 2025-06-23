@@ -48,4 +48,6 @@
     <string name="log_out">Log out</string>
     <string name="option">Options</string>
     <string name="select_museum">Select Museum</string>
+    <string name="news">News</string>
+    <string name="new_notification">New Notification</string>
 </resources>

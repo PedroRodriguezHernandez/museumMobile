@@ -47,5 +47,7 @@
     <string name="enter_password">Escriba la contraseña</string>
     <string name="log_out">Cerrar sesion</string>
     <string name="option">Opciones</string>
-    <string name="select_museum">Select Museum</string>
+    <string name="select_museum">Seleccione un Museo</string>
+    <string name="news">Noticias</string>
+    <string name="new_notification">New Notification</string>
 </resources>
