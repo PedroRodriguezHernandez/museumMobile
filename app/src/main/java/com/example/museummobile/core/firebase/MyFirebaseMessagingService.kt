@@ -51,7 +51,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setContentTitle(title)
             .setContentText(messageBody)
             .setAutoCancel(true)
-            .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
 
         val notificationManager =
