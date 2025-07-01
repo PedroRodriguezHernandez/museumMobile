@@ -7,6 +7,7 @@ plugins {
 
     kotlin("kapt")
 
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -76,6 +77,11 @@ dependencies {
     implementation("io.github.jan-tennert.supabase:realtime-kt")
 
     implementation("io.ktor:ktor-client-android:3.0.0")
+
+    //Firebase
+    implementation("com.google.firebase:firebase-messaging:23.4.1")
+    implementation(platform("com.google.firebase:firebase-bom:33.15.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
 
     implementation(libs.hilt.android)

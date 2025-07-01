@@ -31,7 +31,6 @@ import com.example.museummobile.core.permissions.RequestNotificationPermission
 import com.example.museummobile.core.supabase.AuthSupabase
 import com.example.museummobile.core.supabase.NewsSupabase
 import com.example.museummobile.core.supabase.UserSupabase
-import com.example.museummobile.core.utils.showNotification
 import com.example.museummobile.ui.features.viewModels.AuthViewModel
 import com.example.museummobile.ui.features.viewModels.NewsViewModel
 import com.example.museummobile.ui.features.viewModels.UserViewModel

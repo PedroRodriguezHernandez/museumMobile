@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "119302279971",
+    "project_id": "museum-tfg",
+    "storage_bucket": "museum-tfg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:119302279971:android:1fe971853832eddc23f296",
+        "android_client_info": {
+          "package_name": "com.example.museummobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-FbspOBrI57bEfX4P89VH3YYNkirTGSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

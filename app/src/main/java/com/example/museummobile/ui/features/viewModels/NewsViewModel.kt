@@ -64,13 +64,4 @@ class NewsViewModel (
 
         }
     }
-
-    fun observeNewsRealtime() {
-        viewModelScope.launch {
-            newsRepository.observeNewsRealtime().collectLatest { newsList ->
-                news.clear()
-                news.addAll(newsList.sortedByDescending { it.start_date })
-            }
-        }
-    }
 }
