@@ -30,9 +30,9 @@ import com.example.museummobile.core.supabase.MuseumSupabase
 import com.example.museummobile.core.supabase.OfferSupabase
 import com.example.museummobile.ui.components.dateSelector.DateSelector
 import com.example.museummobile.ui.components.ticket.Ticket
-import com.example.museummobile.ui.features.viewModels.MuseumViewModel
-import com.example.museummobile.ui.features.viewModels.OfferViewModel
-import com.example.museummobile.ui.features.viewModels.SharedViewModel
+import com.example.museummobile.ui.viewModels.MuseumViewModel
+import com.example.museummobile.ui.viewModels.OfferViewModel
+import com.example.museummobile.ui.viewModels.SharedViewModel
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDate
 import kotlinx.datetime.TimeZone

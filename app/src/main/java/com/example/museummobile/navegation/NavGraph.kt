@@ -23,9 +23,9 @@ import com.example.museummobile.ui.features.news.News
 import com.example.museummobile.ui.features.scanQR.Scan
 import com.example.museummobile.ui.features.shop.Shop
 import com.example.museummobile.ui.features.signup.Signup
-import com.example.museummobile.ui.features.viewModels.AuthViewModel
-import com.example.museummobile.ui.features.viewModels.SharedViewModel
-import com.example.museummobile.ui.features.viewModels.SharedViewModelFactory
+import com.example.museummobile.ui.viewModels.AuthViewModel
+import com.example.museummobile.ui.viewModels.SharedViewModel
+import com.example.museummobile.ui.viewModels.SharedViewModelFactory
 
 
 @Composable

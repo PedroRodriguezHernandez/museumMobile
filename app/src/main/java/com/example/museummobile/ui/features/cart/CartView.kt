@@ -47,10 +47,10 @@ import com.example.museummobile.R
 import com.example.museummobile.core.model.Offer
 import com.example.museummobile.core.supabase.OfferSupabase
 import com.example.museummobile.core.supabase.TicketsSupabase
-import com.example.museummobile.ui.features.viewModels.OfferViewModel
-import com.example.museummobile.ui.features.viewModels.SelectDate
-import com.example.museummobile.ui.features.viewModels.SharedViewModel
-import com.example.museummobile.ui.features.viewModels.TicketsViewModel
+import com.example.museummobile.ui.viewModels.OfferViewModel
+import com.example.museummobile.ui.viewModels.SelectDate
+import com.example.museummobile.ui.viewModels.SharedViewModel
+import com.example.museummobile.ui.viewModels.TicketsViewModel
 import kotlinx.datetime.LocalDate
 
 @Composable
@@ -65,7 +65,7 @@ fun Cart(navController: NavController,
     val selectDate by sharedViewModel.selectDates.collectAsState()
 
     val offerViewModel = remember { OfferViewModel(OfferSupabase()) }
-    val ticketsViewModel = remember{ TicketsViewModel(TicketsSupabase())}
+    val ticketsViewModel = remember{ TicketsViewModel(TicketsSupabase()) }
 
     val offers = offerViewModel.offers
     val isLoaded = offerViewModel.isLoaded
@@ -176,7 +176,8 @@ fun buyTickets(
     totalCost: Double,
     selectDate: List<SelectDate>,
     ticketsViewModel: TicketsViewModel,
-    sharedViewModel: SharedViewModel) {
+    sharedViewModel: SharedViewModel
+) {
 
     for (date in selectDate) {
         ticketsViewModel.addTickets(date.date, date.id)

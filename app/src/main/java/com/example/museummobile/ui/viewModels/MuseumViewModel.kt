@@ -1,4 +1,4 @@
-package com.example.museummobile.ui.features.viewModels
+package com.example.museummobile.ui.viewModels
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

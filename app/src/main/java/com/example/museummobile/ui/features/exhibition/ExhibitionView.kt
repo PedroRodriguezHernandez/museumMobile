@@ -43,7 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.example.museummobile.R
 import com.example.museummobile.core.supabase.ExhibitionSupabase
-import com.example.museummobile.ui.features.viewModels.ExhibitionViewModel
+import com.example.museummobile.ui.viewModels.ExhibitionViewModel
 import kotlinx.serialization.json.JsonPrimitive
 
 @SuppressLint("StateFlowValueCalledInComposition")

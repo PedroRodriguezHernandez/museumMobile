@@ -1,4 +1,4 @@
-package com.example.museummobile.ui.features.viewModels
+package com.example.museummobile.ui.viewModels
 
 import android.content.Context
 import androidx.lifecycle.ViewModel

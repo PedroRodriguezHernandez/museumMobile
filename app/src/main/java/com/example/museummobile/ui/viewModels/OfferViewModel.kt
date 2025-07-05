@@ -1,4 +1,4 @@
-package com.example.museummobile.ui.features.viewModels
+package com.example.museummobile.ui.viewModels
 
 import android.util.Log
 import androidx.compose.runtime.getValue

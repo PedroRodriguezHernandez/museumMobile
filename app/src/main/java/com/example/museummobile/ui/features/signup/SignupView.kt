@@ -51,7 +51,7 @@ import com.example.museummobile.R
 import com.example.museummobile.core.supabase.AuthSupabase
 import com.example.museummobile.navegation.Screen
 import com.example.museummobile.ui.components.textField.InputField
-import com.example.museummobile.ui.features.viewModels.AuthViewModel
+import com.example.museummobile.ui.viewModels.AuthViewModel
 
 @Composable
 fun Signup(navController: NavController) {

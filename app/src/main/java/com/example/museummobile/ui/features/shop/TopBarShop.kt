@@ -31,8 +31,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.museummobile.R
 import com.example.museummobile.core.model.Museum
-import com.example.museummobile.ui.features.viewModels.SelectDate
-import com.example.museummobile.ui.features.viewModels.SharedViewModel
+import com.example.museummobile.ui.viewModels.SelectDate
+import com.example.museummobile.ui.viewModels.SharedViewModel
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime

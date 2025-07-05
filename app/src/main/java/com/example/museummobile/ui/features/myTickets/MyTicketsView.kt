@@ -22,9 +22,9 @@ import com.example.museummobile.R
 import com.example.museummobile.core.supabase.AuthSupabase
 import com.example.museummobile.core.supabase.TicketsSupabase
 import com.example.museummobile.core.supabase.UserSupabase
-import com.example.museummobile.ui.features.viewModels.AuthViewModel
-import com.example.museummobile.ui.features.viewModels.TicketsViewModel
-import com.example.museummobile.ui.features.viewModels.UserViewModel
+import com.example.museummobile.ui.viewModels.AuthViewModel
+import com.example.museummobile.ui.viewModels.TicketsViewModel
+import com.example.museummobile.ui.viewModels.UserViewModel
 
 @Composable
 fun MyTickets(navController: NavController) {

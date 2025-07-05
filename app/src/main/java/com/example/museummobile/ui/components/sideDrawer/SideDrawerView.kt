@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.museummobile.R
-import com.example.museummobile.ui.features.viewModels.SharedViewModel
+import com.example.museummobile.ui.viewModels.SharedViewModel
 
 @Composable
 fun SideDrawer(

@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import com.example.museummobile.R
 import com.example.museummobile.core.model.News
 import com.example.museummobile.core.supabase.MuseumSupabase
-import com.example.museummobile.ui.features.viewModels.MuseumViewModel
+import com.example.museummobile.ui.viewModels.MuseumViewModel
 
 @Composable
 fun ColumNews(news: SnapshotStateList<News>, navController: NavController) {

@@ -29,7 +29,7 @@ import androidx.navigation.NavHostController
 import com.example.museummobile.R
 import com.example.museummobile.core.supabase.NewsSupabase
 import com.example.museummobile.ui.features.home.convertText
-import com.example.museummobile.ui.features.viewModels.NewsViewModel
+import com.example.museummobile.ui.viewModels.NewsViewModel
 
 @Composable
 fun News(id: String, navController: NavHostController) {

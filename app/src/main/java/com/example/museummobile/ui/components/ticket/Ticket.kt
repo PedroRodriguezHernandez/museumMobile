@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.museummobile.R
 import com.example.museummobile.core.model.Offer
-import com.example.museummobile.ui.features.viewModels.SelectDate
+import com.example.museummobile.ui.viewModels.SelectDate
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
