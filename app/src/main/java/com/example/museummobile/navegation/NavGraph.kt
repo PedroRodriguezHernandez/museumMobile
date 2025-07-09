@@ -13,6 +13,7 @@ import androidx.navigation.navArgument
 import com.example.museummobile.MainScreen
 import com.example.museummobile.R
 import com.example.museummobile.core.supabase.AuthSupabase
+import com.example.museummobile.core.utils.SessionGuard
 import com.example.museummobile.ui.features.cart.Cart
 import com.example.museummobile.ui.features.confirm_email.ConfirmEmail
 import com.example.museummobile.ui.features.exhibition.Exhibition
@@ -39,7 +40,7 @@ fun AppNavGraph(navController: NavHostController){
 
     NavHost(
         navController = navController,
-        startDestination = Screen.Login.route
+        startDestination = Screen.SessionGuard.route
     ){
         composable(Screen.Login.route){ Login(navController) }
         composable(Screen.SignUp.route){ Signup(navController) }
@@ -99,6 +100,9 @@ fun AppNavGraph(navController: NavHostController){
             backStackEntry ->
             val id = backStackEntry.arguments?.getString("id") ?: ""
             News(id, navController)
+        }
+        composable(Screen.SessionGuard.route) {
+            SessionGuard(navController, authViewModel)
         }
     }
 }

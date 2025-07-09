@@ -1,6 +1,8 @@
 package com.example.museummobile.navegation
 
 sealed class Screen(val route : String){
+    object SessionGuard : Screen("session_guard")
+
     object Login : Screen("login")
     object SignUp : Screen("signup")
     object Home: Screen("home")
@@ -15,4 +17,6 @@ sealed class Screen(val route : String){
     object News: Screen("news/{id}"){
         fun createRouter(id:String) = "news/$id"
     }
+
+
 }

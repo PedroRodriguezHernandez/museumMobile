@@ -50,4 +50,5 @@
     <string name="select_museum">Seleccione un Museo</string>
     <string name="news">Noticias</string>
     <string name="new_notification">New Notification</string>
+    <string name="selec_date_and_museum">Selecciona un museo y una fecha para ver las ofertas.</string>
 </resources>

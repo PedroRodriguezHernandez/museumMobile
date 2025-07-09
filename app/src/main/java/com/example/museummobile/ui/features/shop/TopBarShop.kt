@@ -109,35 +109,34 @@ fun TopBarShop(
                     )
                 }
             }
+        }
+        if (number > 0) {
+            IconButton(onClick = {
+                val selectedDate = selectedDateMillis?.let {
+                    Instant.fromEpochMilliseconds(it)
+                        .toLocalDateTime(TimeZone.currentSystemDefault()).date
+                }
 
-            if (number > 0) {
-                IconButton(onClick = {
-                    val selectedDate = selectedDateMillis?.let {
-                        Instant.fromEpochMilliseconds(it)
-                            .toLocalDateTime(TimeZone.currentSystemDefault()).date
+                selectedDate?.let { currentDate ->
+                    val updatedList = sharedViewModel.selectDates.value
+                        .filterNot { it.date == currentDate && selectedList.any { sel -> sel.id == it.id } }
+
+                    sharedViewModel.clearDates()
+                    sharedViewModel.addDates(updatedList + selectedList)
+                }
+
+                navController.navigate("cart")
+            }) {
+                BadgedBox(badge = {
+                    if (number > 0) {
+                        Badge { Text("") }
                     }
-
-                    selectedDate?.let { currentDate ->
-                        val updatedList = sharedViewModel.selectDates.value
-                            .filterNot { it.date == currentDate && selectedList.any { sel -> sel.id == it.id } }
-
-                        sharedViewModel.clearDates()
-                        sharedViewModel.addDates(updatedList + selectedList)
-                    }
-
-                    navController.navigate("cart")
                 }) {
-                    BadgedBox(badge = {
-                        if (number > 0) {
-                            Badge { Text("") }
-                        }
-                    }) {
-                        Icon(
-                            Icons.Outlined.ShoppingCartCheckout,
-                            contentDescription = stringResource(R.string.shopping_checkout),
-                            tint = colorResource(R.color.blue)
-                        )
-                    }
+                    Icon(
+                        Icons.Outlined.ShoppingCartCheckout,
+                        contentDescription = stringResource(R.string.shopping_checkout),
+                        tint = colorResource(R.color.blue)
+                    )
                 }
             }
         }

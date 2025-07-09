@@ -51,8 +51,8 @@ import com.example.museummobile.ui.theme.MuseumMobileTheme
 fun Login(navController: NavController) {
 
     val authViewModel = remember { AuthViewModel(AuthSupabase()) }
-
     val loggedIn = authViewModel.isLoggedIn.value
+    val isLoading = authViewModel.isLoading
 
     LaunchedEffect(Unit) {
         authViewModel.checkLoggedIn()
@@ -67,7 +67,7 @@ fun Login(navController: NavController) {
     }
 
 
-    if (authViewModel.isLoading) {
+    if (isLoading) {
         Box (
             modifier = Modifier
                 .fillMaxSize(),
@@ -77,7 +77,7 @@ fun Login(navController: NavController) {
                     .align(Alignment.Center)
             )
         }
-    }else {
+    } else {
         Column (
             modifier = Modifier.fillMaxSize()
                 .navigationBarsPadding()

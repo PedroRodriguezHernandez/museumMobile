@@ -51,7 +51,7 @@ class TicketsViewModel(
             errorMessage = null
             try {
                 val result = ticketsRepository.addTickets(date,offer_id)
-                Log.d("prueba", "addTickets: $result")
+                /*Log.d("Prueba", "addTickets: ${result.toString()}")*/
                 isCreated =  true
             }catch (e: Exception){
                 errorMessage = e.message

@@ -19,6 +19,7 @@ class AuthViewModel (
     private val authRepository: AuthRepository
 ): ViewModel() {
 
+
     var isLoading by mutableStateOf(false)
         private set
 
@@ -51,13 +52,14 @@ class AuthViewModel (
         }
     }
 
-    fun checkLoggedIn() {
+    suspend fun checkLoggedIn() {
         viewModelScope.launch {
             isLoading = true
             _isLoggedIn.value = authRepository.isLoggedIn()
+            isLoading = false
         }
-        isLoading = false
     }
+
 
 
     fun login(email: String, password: String, onSuccess: () -> Unit) {
